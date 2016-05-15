@@ -1,6 +1,7 @@
 <?php
 
-require_once( 'startup.php' );
+require_once('startup.php');
+require_once('config.php');
 
 try {
   $db = new PDO("mysql:host=host-10;
@@ -19,14 +20,14 @@ try {
 }
 
 try{
-  $results = $db->query("SELECT * FROM 9recent");
-} catch (Exception $e){
-  echo "Data could not be retreived from database";
+  $results = $db->query("SELECT * FROM IG_Users");
+} catch (PDOException $e){
+  echo 'ERROR: ' . $e->getMessage();
   exit;
 }
 
-  echo "<pre>";
-  var_dump($results->fetchAll(PDO::FETCH_ASSOC));
+  //echo "<pre>";
+  //var_dump($results->fetchAll(PDO::FETCH_ASSOC));
 
  ?>
  <?php
