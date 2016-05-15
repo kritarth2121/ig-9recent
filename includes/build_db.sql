@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS `IG_Users` (
   `user_id` int(11) DEFAULT NULL,
   `username` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `total_comments` int(11) DEFAULT NULL,
+  `avg_comments` int(11) DEFAULT NULL,
   `total_likes` int(11) DEFAULT NULL,
   `avg_likes` int(11) DEFAULT NULL,
   `engagement_ratio` decimal(10,2) DEFAULT NULL,
