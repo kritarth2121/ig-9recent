@@ -20,7 +20,7 @@ try {
   $total_likes = $_POST['total_likes'];
   $avg_likes = $_POST['avg_likes'];
   $engagement_ratio = $_POST['engagement_ratio'];
-  $picture = (string)$_POST['picture'];
+  $picture = $_POST['picture'];
 
   //Query shit (var from Form Shit (the DB column) compared to Ajax var)
   $q = "INSERT INTO IG_Users(num_followers, user_id, username, total_comments, avg_comments, total_likes, avg_likes, engagement_ratio, picture) VALUES(:num_followers, :user_id, :users_name, :total_comments, :avg_comments, :total_likes, :avg_likes, :engagement_ratio, :picture)";
