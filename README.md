@@ -72,8 +72,9 @@ Sample data will keep being displayed until `cron.php` is first ran. Once ran it
 - [x] Hide results table on load, show it on click
 - [ ] Figure out a non hacky way to load results instead of using setTimeout
 - [ ] If any of the 9 pics returned is less than x hours old, discard it until you have 9 results that are > x hours old
-- [ ] Store results and save them so they can be compared to future results
+- [x] Store results and save them so they can be compared to future results
 - [x] Grey out submit button on results, otherwise hitting it again will double feed results
+- [ ] Need to figure out a way to have the username box send a SQL query to the DB via historydisplay.php
 
 ## Creators
 
