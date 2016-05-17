@@ -4,9 +4,8 @@ require_once('startup.php');
 require_once('config.php');
 
 try {
-  $db = new PDO("mysql:host=host-10;
-                       dbname=9recent;
-                       port=3306", //specify DB port if need be
+  $db = new PDO("mysql:host=127.0.0.1;
+                       dbname=ig-last-9",
                        "root", //db username
                        DB_PASSWORD); //DB password
   //var_dump($db); //Dump the database info

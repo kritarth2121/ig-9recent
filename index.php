@@ -258,8 +258,6 @@ get_header();
 		$('#sendToDb').prop('disabled', true);
 	};
 
-
-
 </script>
 
 <?php get_footer(); ?>
