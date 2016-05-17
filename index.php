@@ -96,7 +96,7 @@ get_header();
 			//Displays an alert if the Engagement Ratio isn't calculated in time
 			$('#myPleaseWait').modal('show');
 			$.ajax({
-					url: "recent.php",
+					url: "index.php",
 					success: setTimeout(function (data) {
 							$('#myPleaseWait').modal('hide');
 					}, 1000),
