@@ -1,4 +1,4 @@
-# IG Last9 [![License](https://img.shields.io/badge/license-GPL--2.0%2B-green.svg)](http://www.gnu.org/licenses/gpl-2.0.html)
+# IG 9recent [![License](https://img.shields.io/badge/license-GPL--2.0%2B-green.svg)](http://www.gnu.org/licenses/gpl-2.0.html)
 
 A simple Instagram analytics tool.
 

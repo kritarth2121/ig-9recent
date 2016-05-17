@@ -1,6 +1,6 @@
 <?php
 /**
- * The base configuration for IG Follow Count
+ * The base configuration for 9recent
  *
  * Copy this file to "config.php" and fill in
  * the values.
