@@ -1,6 +1,0 @@
-.DS_Store
-logs/*
-.idea
-!logs/log-sample.csv
-config.php
-node_modules
