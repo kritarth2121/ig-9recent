@@ -4,9 +4,9 @@ require_once('startup.php');
 require_once('config.php');
 
 try {
-  $db = new PDO("mysql:host=127.0.0.1;
-                       dbname=ig-last-9",
-                       "root", //db username
+  $db = new PDO("mysql:host=" . DB_HOST . ";
+                       dbname=" . DB_NAME,
+                       DB_USERNAME, //db username
                        DB_PASSWORD); //DB password
   //var_dump($db); //Dump the database info
   $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION); //Shows errors if the PDO object returns errors such as cannot execute query
