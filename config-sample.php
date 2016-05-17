@@ -23,11 +23,3 @@ define( 'TIME_ZONE', 'US/Eastern' );
 
 /** Define Database Password  */
 define( 'DB_PASSWORD', '');
-
-/** Optional configurations below */
-
-/** Instagram hashtag */
-//define( 'IG_HASGTAG', '' );
-
-/** Set the graph color scheme */
-//define( 'THEME', 'dark' );
