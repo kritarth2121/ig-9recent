@@ -9,7 +9,7 @@ A simple Instagram analytics tool.
 + [Bootstrap](http://getbootstrap.com)
 + [HighCharts](http://www.highcharts.com/)
 
-## TODO for recent.php
+## TODO
 - [x] Add commas for numbers in thousands
 - [x] Combine the 2 results tables into 1
 - [x] Hide results table on load, show it on click
