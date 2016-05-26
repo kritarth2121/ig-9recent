@@ -56,12 +56,12 @@ Note for Beginners:
 ## Creators
 
 + ##### James Pistell
-  * ![James Pistell's GitHub Account](http://i.imgur.com/Myo5q9q.png "James Pistells GitHub Account")[GitHub](https://github.com/pistell)  
-  * ![James Pistell's LinkedIn Account](http://i.imgur.com/Oq9lKwx.png "James Pistells LinkedIn Account")[LinkedIn](https://www.linkedin.com/in/jamespistell)
+  * ![James Pistell's GitHub Account](http://i.imgur.com/Myo5q9q.png "James Pistells GitHub Account") [GitHub](https://github.com/pistell)  
+  * ![James Pistell's LinkedIn Account](http://i.imgur.com/Oq9lKwx.png "James Pistells LinkedIn Account") [LinkedIn](https://www.linkedin.com/in/jamespistell)
 
 + ##### Joseph Fusco
-  * ![Joseph Fusco's GitHub Account](http://i.imgur.com/Myo5q9q.png "Joseph Fucsos GitHub Account")[GitHub](https://github.com/josephfusco) 
-  * ![Joseph Fusco's Website](http://i.imgur.com/HBak7o7.png "Joseph Fucsos Website")[Website](http://josephfus.co/)
+  * ![Joseph Fusco's GitHub Account](http://i.imgur.com/Myo5q9q.png "Joseph Fucsos GitHub Account") [GitHub](https://github.com/josephfusco)
+  * ![Joseph Fusco's Website](http://i.imgur.com/HBak7o7.png "Joseph Fucsos Website") [Website](http://josephfus.co/)
 
 
 
