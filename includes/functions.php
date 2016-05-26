@@ -97,12 +97,13 @@ function write_data( $file ) {
 
 /**
  * Load theme styles
+ * REMOVED THE /THEME/ DIR AS IT IS NOT NEEDED IN THIS FORK
  */
 function load_theme_styles() {
 	if ( ! defined( 'THEME' ) ) {
-		echo '<link href="styles/themes/default.css" rel="stylesheet" type="text/css">';
+		echo '<link href="styles/default.css" rel="stylesheet" type="text/css">';
 	} else {
-		echo '<link href="styles/themes/' . THEME . '.css" rel="stylesheet" type="text/css">';
+		echo '<link href="styles/' . THEME . '.css" rel="stylesheet" type="text/css">';
 	}
 }
 

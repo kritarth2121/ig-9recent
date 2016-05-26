@@ -53,6 +53,7 @@ Note for Beginners:
 - [ ] Clean up Update.php and historydisplay.php and remove the DB vars, include vars from config.php
 - [ ] Hide Results Table until username is submitted
 - [ ] Remove unnecessary console.log commands on production
+- [ ] Fix sticky footer clipping the results table
 
 ## Built With
 * [Atom](https://atom.io/)

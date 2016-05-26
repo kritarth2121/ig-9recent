@@ -1,16 +1,9 @@
 <?php
 
-// if (isset($_POST['submit'])) {
-//   $username = $_POST['username'];
-// }
-//
-//
-
-
  try {
    $username = $_POST['username'];
    $username = mysql_real_escape_string($username);
-   //connection shit
+   //connection to DB
    $host = "host-10";
    $user = "killbot";
    $pass = "kill";
@@ -19,8 +12,8 @@
    $dbc = new PDO("mysql:host=" . $host . ";dbname=" . $database, $user, $pass);
    $dbc->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-   $q = "SELECT * FROM `IG_Users` WHERE `username` = 'fitness' ORDER BY `time_stamp` DESC";
-   //$q = "SELECT FROM IG_Users WHERE username = 'fitness' ORDER BY time_stamp DESC";
+   $q = "SELECT * FROM IG_Users WHERE username = '$username' ORDER BY `time_stamp` DESC";
+   //$q = "SELECT * FROM `IG_Users` WHERE `username` = 'fitness' ORDER BY `time_stamp` DESC";
    $query = $dbc->prepare($q);
    $query->execute();
    $results = $query->fetchAll( PDO::FETCH_ASSOC );
@@ -30,7 +23,8 @@
    exit;
  }
 ?>
- <table class="table table-striped">
+
+ <table class="table table-striped clear-top table-hover" id="dbTable">
    <tr>
      <th>User ID</th>
      <th>Username</th>

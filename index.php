@@ -12,12 +12,14 @@ get_header();
             <h4><p class="text-info">Search for a user:</p></h4>
 
             <div class="input-group">
-                <span class="input-group-btn">
-          <button type="button" value="submit" class="btn btn-primary" onclick="ajax()" id="get_id" name="submit">Submit</button>
-        </span>
-                <input type="text" id="username" name="username" value="fitness" class="form-control">
-            </div>
 
+                <span class="input-group-btn">
+                  <button type="button" value="submit" class="btn btn-primary" onclick="ajax()" id="get_id" name="submit">Submit</button>
+                </span>
+                <input type="text" id="username" name="username" value="fitness" class="form-control">
+
+            </div>
+            <!-- Displays users data from Instagram API -->
             <div id="result" class="row">
                 <div class="avatar col-md-6 col-md-push-3"></div>
                 <div class="users_name col-md-3"></div>
@@ -27,8 +29,8 @@ get_header();
 
         </div>
         <div class="col-md-6 resultsCol">
-
-            <table id="myTable" class="table table-striped">
+            <!-- Displays the # of comments/likes on the 9 recent images from Instagram API -->
+            <table id="myTable" class="table table-striped table-hover">
                 <thead>
                     <tr>
                         <th>Comments</th>
@@ -36,7 +38,7 @@ get_header();
                     </tr>
                 </thead>
             </table>
-
+            <!-- Adds up and averages the comments/likes and adds an Engagement Ratio -->
             <table id="sum_table" class="table table-bordered">
                 <tr class="totalColumn success">
                     <td class="totalComment"></td>
@@ -87,8 +89,12 @@ get_header();
 <script type="text/javascript">
 	//Hide the Results table and results thumbnail on load
 	$(document).ready(function () {
+      //Table to the right that includes recently queried total/avg comments and likes plus engagement ratio
 			$(".resultsCol").addClass("hidden");
+      //Box that includes User ID, # Followers, Avatar and Username
 			$("#result").addClass("hidden");
+      //Table from previous stored database results
+      $("#dbTable").addClass("hidden");
 	});
 
 	function ajax() {
@@ -156,16 +162,17 @@ get_header();
 													}
 											});
 											//Fourth Ajax-- displays user history table Below
-											//For the fucking life of me I cannot figure out how to send this data to historydisplay.php
-											//Therefore historydisplay.php will only work if the username is hard coded into the file
+                      var un = $("#username").val();
 											$.ajax({
 												type: "POST",
 												url: "includes/historydisplay.php",
-												data: username,
+												data: {username : un},
+                        dataType: 'html',
 												cache: false,
-												success: function(data){
-													username = $("#username").val();
-													console.log("THE USERNAME I HAVE IS:::::: " + username);
+												success: function(response){
+													//username = $("#username").val();
+													console.log("THE USERNAME I HAVE IS:::::: " + un);
+                          $("#dbTable").html(response);
 												}
 											});
 
@@ -210,6 +217,8 @@ get_header();
 					$(".resultsCol").toggleClass("hidden");
 					//Display the results thumbnail
 					$("#result").toggleClass("hidden");
+          //Display the table with the stored queries
+          $("#dbTable").toggleClass("hidden");
 					//disable the submit button to prevent double feeding of results
 					$('#get_id').prop('disabled', true);
 			}, 1000);
@@ -255,6 +264,7 @@ get_header();
            console.log(thrownError);
        }
 		});
+
 		//Disable button on click
 		$('#sendToDb').prop('disabled', true);
 	};

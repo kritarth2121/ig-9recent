@@ -16,5 +16,6 @@ if ( ! defined( 'ABSPATH' ) ) exit ( "Direct access not permitted." );
         <p class="text-muted">With Assistance from <a href="https://github.com/josephfusco" target="_blank">Joseph Fusco</a></p>
       </div>
     </footer>
+
   </body>
 </html>
