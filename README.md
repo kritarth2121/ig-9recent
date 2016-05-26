@@ -55,6 +55,7 @@ Note for Beginners:
 - [ ] Remove unnecessary console.log commands on production
 - [x] Fix sticky footer clipping the results table
 - [ ] The "#result" div has responsive CSS issues
+- [ ] Should be a cleaner way to remove the results on the page without reloading
 
 ## Built With
 * [Atom](https://atom.io/)
