@@ -4,3 +4,4 @@ logs/*
 !logs/log-sample.csv
 config.php
 node_modules
+info.php

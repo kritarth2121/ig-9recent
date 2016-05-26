@@ -27,6 +27,8 @@ Copy the contents of 'config-sample.php' and create a new file named 'config.php
 cp config-sample.php config.php
 ```
 
+Open up your MySQL database in phpMyAdmin (or whatever DB management tool you prefer). Copy the contents of build_db.sql and paste them into a SQL query box. Run the statement to build the database.
+
 After that edit the variables in config.php to connect to the MySQL database.
 
 Note for Beginners:
@@ -56,6 +58,7 @@ Note for Beginners:
 - [x] Fix sticky footer clipping the results table
 - [ ] The "#result" div has responsive CSS issues
 - [ ] Should be a cleaner way to remove the results on the page without reloading
+- [ ] Update Database button should automatically populate the DB records table below
 
 ## Built With
 * [Atom](https://atom.io/)

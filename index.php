@@ -147,6 +147,7 @@ get_header();
 								}
 							});
 							//Fourth Ajax-- displays user history table Below
+              //https://webdesignerhut.com/pass-data-with-ajax-to-a-php-file/
 							var un = $("#username").val();
 							$.ajax({
 								type: "POST",
