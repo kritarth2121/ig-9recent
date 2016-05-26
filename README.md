@@ -3,10 +3,10 @@
 A simple Instagram analytics tool for evaluating activity on specified accounts. This tool is useful for Internet marketers who are searching for influencer accounts with high engagement and activity. IG 9recent scans the most recent 9 photos of an Instagram account and spits out data for several fields:
 
 1. Static User data
-..* Profile Avatar
-..* Username
-..* Current Number of Followers
-..* Instagram User ID
+  * Profile Avatar
+  * Username
+  * Current Number of Followers
+  * Instagram User ID
 2. Current Number of Comments for Each Photo
 3. Current Number of Likes for Each Photo
 4. Total Number of Comments for All 9 Photos
@@ -14,7 +14,7 @@ A simple Instagram analytics tool for evaluating activity on specified accounts.
 6. Total Likes of All 9 Photos
 7. Average Number of Likes for All 9 Photos
 8. Engagement Ratio
-..* [Likes + Comments] / Followers = Engagement Ratio
+  * [Likes + Comments] / Followers = Engagement Ratio
 
 Once the data has been collected via the Instagram API, you will have the ability to store the results in a MySQL DB. As of 25MAY2016 the index page will only display data for the placeholder user 'fitness'. In order to change the displayed results you will need to manually edit the '$q' variable in historydisplay.php to show other stored users.
 
