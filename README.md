@@ -50,10 +50,11 @@ Note for Beginners:
 - [x] Store results and save them so they can be compared to future results
 - [x] Grey out submit button on results, otherwise hitting it again will double feed results
 - [x] Need to figure out a way to have the username box send a SQL query to the DB via historydisplay.php
-- [ ] Clean up Update.php and historydisplay.php and remove the DB vars, include vars from config.php
+- [x] Clean up Update.php and historydisplay.php and remove the DB vars, include vars from config.php
 - [x] Hide Results Table until username is submitted
 - [ ] Remove unnecessary console.log commands on production
 - [x] Fix sticky footer clipping the results table
+- [ ] The "#result" div has responsive CSS issues
 
 ## Built With
 * [Atom](https://atom.io/)

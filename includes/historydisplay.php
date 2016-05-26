@@ -1,23 +1,15 @@
 <?php
-
+include '../config.php';
+//This file displays the results from the database that match the users name you typed
  try {
    $username = $_POST['username'];
    $username = mysql_real_escape_string($username);
-   //connection to DB
-   $host = "host-10";
-   $user = "killbot";
-   $pass = "kill";
-   $database = "9recent";
-   //PDO shit
-   $dbc = new PDO("mysql:host=" . $host . ";dbname=" . $database, $user, $pass);
+   $dbc = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USERNAME, DB_PASSWORD);
    $dbc->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-
    $q = "SELECT * FROM IG_Users WHERE username = '$username' ORDER BY `time_stamp` DESC";
-   //$q = "SELECT * FROM `IG_Users` WHERE `username` = 'fitness' ORDER BY `time_stamp` DESC";
    $query = $dbc->prepare($q);
    $query->execute();
    $results = $query->fetchAll( PDO::FETCH_ASSOC );
-
  } catch (PDOException $e) {
    echo 'ERROR: ' . $e->getMessage();
    exit;
