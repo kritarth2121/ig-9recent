@@ -1,6 +1,6 @@
 <?php
 
-// Exit if accessed directly.
+// Exit if accessed directly
 if( count( get_included_files() ) == 1 ) exit( "Direct access not permitted." );
 
 define( 'ABSPATH', dirname(__FILE__) . '/' );
