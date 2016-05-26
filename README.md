@@ -62,7 +62,4 @@ Note for Beginners:
 + ##### Joseph Fusco
   * ![Joseph Fusco's GitHub Account](http://i.imgur.com/Myo5q9q.png "Joseph Fucsos GitHub Account") [GitHub](https://github.com/josephfusco)
   * ![Joseph Fusco's Website](http://i.imgur.com/HBak7o7.png "Joseph Fucsos Website") [Website](http://josephfus.co/)
-
-
-
-<div>Icons made by <a href="http://www.flaticon.com/authors/dave-gandy" title="Dave Gandy">Dave Gandy</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+  
