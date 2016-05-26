@@ -18,7 +18,7 @@ A simple Instagram analytics tool for evaluating activity on specified accounts.
 8. Engagement Ratio
   * [Likes + Comments] / Followers = Engagement Ratio
 
-Once the data has been collected via the Instagram API, you will have the ability to store the results in a MySQL DB. As of 25MAY2016 the index page will only display data for the placeholder user 'fitness'. In order to change the displayed results you will need to manually edit the '$q' variable in historydisplay.php to show other stored users.
+Once the data has been collected via the Instagram API, you will have the ability to store the results in a MySQL DB.
 
 ## Installing
 Copy the contents of 'config-sample.php' and create a new file named 'config.php'.
@@ -49,11 +49,11 @@ Note for Beginners:
 - [ ] If any of the 9 pics returned is less than x hours old, discard it until you have 9 results that are > x hours old
 - [x] Store results and save them so they can be compared to future results
 - [x] Grey out submit button on results, otherwise hitting it again will double feed results
-- [ ] Need to figure out a way to have the username box send a SQL query to the DB via historydisplay.php
+- [x] Need to figure out a way to have the username box send a SQL query to the DB via historydisplay.php
 - [ ] Clean up Update.php and historydisplay.php and remove the DB vars, include vars from config.php
-- [ ] Hide Results Table until username is submitted
+- [x] Hide Results Table until username is submitted
 - [ ] Remove unnecessary console.log commands on production
-- [ ] Fix sticky footer clipping the results table
+- [x] Fix sticky footer clipping the results table
 
 ## Built With
 * [Atom](https://atom.io/)
