@@ -55,5 +55,11 @@ Note for Beginners:
 ---
 ## Creators
 
-* [James Pistell](https://github.com/pistell)
-* [Joseph Fusco](https://github.com/josephfusco)
++ [James Pistell](https://github.com/pistell)
+  * ![James Pistell's GitHub Account](http://i.imgur.com/Myo5q9q.png "James Pistells GitHub Account")[GitHub](https://github.com/pistell)
+
++ [Joseph Fusco](https://github.com/josephfusco)
+
+
+
+<div>Icons made by <a href="http://www.flaticon.com/authors/dave-gandy" title="Dave Gandy">Dave Gandy</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
