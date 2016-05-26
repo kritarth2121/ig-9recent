@@ -29,8 +29,8 @@ After that edit the variables in config.php to connect to the MySQL database.
 
 Note for Beginners:
 >This repository uses PHP and a CDN for Bootstrap.
->Therefore, you will need to utilize a local web server to run the files
->[XAMPP](https://www.apachefriends.org/) or [MAMP/MAMP Pro](https://www.mamp.info/en/) will be your easiest solution  
+>Therefore, you will need to utilize a web server to run the files. The quickest way is to use a local web server.
+>[XAMPP](https://www.apachefriends.org/) or [MAMP/MAMP Pro](https://www.mamp.info/en/) will be your easiest solutions.  
 
 ## Libraries and Plugins Used
 
@@ -62,4 +62,3 @@ Note for Beginners:
 + ##### Joseph Fusco
   * ![Joseph Fusco's GitHub Account](http://i.imgur.com/Myo5q9q.png "Joseph Fucsos GitHub Account") [GitHub](https://github.com/josephfusco)
   * ![Joseph Fusco's Website](http://i.imgur.com/HBak7o7.png "Joseph Fucsos Website") [Website](http://josephfus.co/)
-  
