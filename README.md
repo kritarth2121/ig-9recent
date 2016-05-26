@@ -1,5 +1,7 @@
 # IG 9recent [![License](https://img.shields.io/badge/license-GPL--2.0%2B-green.svg)](http://www.gnu.org/licenses/gpl-2.0.html)
 
+![IG 9recent Screenshot](http://i.imgur.com/ee0y50g.png?1 "IG 9recent Screenshot")
+
 A simple Instagram analytics tool for evaluating activity on specified accounts. This tool is useful for Internet marketers who are searching for influencer accounts with high engagement and activity. IG 9recent scans the most recent 9 photos of an Instagram account and spits out data for several fields:
 
 1. Static User data
