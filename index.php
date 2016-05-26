@@ -146,9 +146,11 @@ get_header();
 									$("#result .followers").append(followers);
 								}
 							});
-							//Fourth Ajax-- displays user history table Below
+              //4th AJAX()-- displays user history table Below
+              var un = $("#username").val();
+              //The following $.ajax() works on MAMP but not on a server. No idea why
+              //Refer to MAMP_to_Production.php for a work around
               //https://webdesignerhut.com/pass-data-with-ajax-to-a-php-file/
-							var un = $("#username").val();
 							$.ajax({
 								type: "POST",
 								url: "includes/historydisplay.php",
@@ -158,7 +160,6 @@ get_header();
 								dataType: 'html',
 								cache: false,
 								success: function (response) {
-									//username = $("#username").val();
 									console.log("THE USERNAME I HAVE IS:::::: " + un);
 									$("#dbTable").html(response);
 								}
