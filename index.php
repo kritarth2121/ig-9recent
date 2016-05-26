@@ -198,7 +198,7 @@ get_header();
 					//Below takes the total number of likes and displays that number, then on the next line it divides the number by 9 and displays the average likes
 					$('.totalLikes').html("Total Likes: <b><span class='number total_likes'>" + totLikes + "</span></b>" + "<p>Average Likes: <b><span class='number avg_likes'>" + parseInt(totLikes / 9) + "</span></b></p>");
 					// Add in the math for the engagement Ratio
-					// [Likes + Comments] / Followers = Engagement Rate
+					// [Likes + Comments] / Followers = Engagement Ratio
 					// I only sample the first 9 images on their account. No sense in getting numbers for pics that are 6 months old
 					var likesAndComments = totLikes + sumComments;
 					var numOfFollowers = $(".followers").text().split(": ").pop();
@@ -232,6 +232,7 @@ get_header();
 		data.engagement_ratio = $(".engagementRatio").text().split(": ").pop();
 		data.picture = $(".avatar a").html();
 
+    //AJAX query to update the Database
 		$.ajax({
 			type: "POST",
 			url: "includes/update.php",
