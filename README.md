@@ -32,7 +32,7 @@ Note for Beginners:
 >Therefore, you will need to utilize a local web server to run the files
 >[XAMPP](https://www.apachefriends.org/) or [MAMP/MAMP Pro](https://www.mamp.info/en/) will be your easiest solution  
 
-## Libs Used
+## Libraries and Plugins Used
 
 + [jQuery](http://jquery.com)
 + [jQuery Number Format](https://www.customd.com/articles/14/jquery-number-format-redux)
