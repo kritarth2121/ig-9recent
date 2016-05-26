@@ -52,6 +52,13 @@ Note for Beginners:
 - [ ] Hide Results Table until username is submitted
 - [ ] Remove unnecessary console.log commands on production
 
+## Built With
+* [Atom](https://atom.io/)
+* [MAMP Pro](https://www.mamp.info/en/)
+* [PHP](http://php.net)
+* [phpMyAdmin](https://www.phpmyadmin.net/)
+* [Tears](http://i.imgur.com/pM1bLLX.jpg)
+
 ---
 ## Creators
 
