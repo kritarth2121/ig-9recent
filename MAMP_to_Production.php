@@ -1,5 +1,13 @@
 <?php
-//MAMP File Config:
+/*
+This is a How-To file for transfering the repo from localhost to the WWW:
+This file exists due to the frustraiting nature of transporting this repo from localhost to a VPS. I spent several hours fiddling around with Ajax and PHP and couldn't find a suitable solution.
+I settled on having 2 separate configs for MAMP servers and a VPS. The big difference is the MAMP server POSTS and the VPS GETS. I honestly don't know why I can't use one config for development
+and production. This method is hacky but it works, and I am honestly so burned out that I cannot fathom troubleshooting this for one more minute.
+-JP
+*/
+
+//MAMP File Config (Use this if you're going to host locally):
 
 //1. index.php
             //4th, getJSON()-- displays user history table Below
@@ -69,7 +77,7 @@
 
 //=========================================================================//
 
-//Production File Config
+//Production File Config (edit these 2 files if you're going to host on a VPS)
 
 //1. index.php
             //4th, getJSON()-- displays user history table Below
