@@ -167,3 +167,7 @@ input#username{
   height: 38px;
   width: 50%;
 }
+.logo-header{
+  margin: 20px 0px 0px 20px;
+  display:-webkit-inline-box;
+}

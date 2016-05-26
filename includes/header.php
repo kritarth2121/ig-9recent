@@ -22,5 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) exit ( "Direct access not permitted." );
 
 </head>
 <body class="<?php echo get_active_page(); ?>">
-
+<header class="logo-header">
+  <img src="img/clipboard.png" alt="IG 9recent Logo"/><h1>IG 9recent</h1>
+</header>
     <main class="content">
