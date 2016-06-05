@@ -65,6 +65,7 @@ Note for Beginners:
 - [x] Should be a cleaner way to remove the results on the page without reloading
 - [x] Update Database button should automatically populate the DB records table below
 - [ ] Truncate queried records and paginate
+- [ ] Issue alert if the scraper runs into a private account 
 
 ## Built With
 * [Atom](https://atom.io/)
