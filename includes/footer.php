@@ -13,7 +13,6 @@ if ( ! defined( 'ABSPATH' ) ) exit ( "Direct access not permitted." );
     <footer class="footer">
       <div class="container">
         <p class="text-muted">Project by <a href="https://github.com/pistell" target="_blank">James Pistell</a></p>
-        <p class="text-muted">With Assistance from <a href="https://github.com/josephfusco" target="_blank">Joseph Fusco</a></p>
       </div>
     </footer>
 
