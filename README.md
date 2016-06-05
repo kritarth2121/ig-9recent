@@ -1,6 +1,6 @@
 # IG 9recent [![License](https://img.shields.io/badge/license-GPL--2.0%2B-green.svg)](http://www.gnu.org/licenses/gpl-2.0.html)
 
-![IG 9recent Screenshot](http://i.imgur.com/ee0y50g.png?1 "IG 9recent Screenshot")
+![IG 9recent Screenshot](http://i.imgur.com/JJO4y29.png?1 "IG 9recent Screenshot")
 
 A simple Instagram analytics tool for evaluating activity on specified accounts. This tool is useful for Internet marketers who are searching for influencer accounts with high engagement and activity. Previously this app interfaced with the Instagram API to pull the data, however in early June 2016 Instagram decided to require all API requests be authenticated per user, even the data they share publically. Therefore IG 9recent scrapes data without the need of an API. IG 9recent scans the most recent 9 photos of an Instagram account and spits out data for several fields:
 
@@ -59,7 +59,7 @@ Note for Beginners:
 - [x] The "#result" div has responsive CSS issues
 - [x] Should be a cleaner way to remove the results on the page without reloading
 - [x] Update Database button should automatically populate the DB records table below
-- [ ] Truncate queried records and paginate 
+- [ ] Truncate queried records and paginate
 
 ## Built With
 * [Atom](https://atom.io/)
