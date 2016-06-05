@@ -1,12 +1,13 @@
 <?php
 include '../config.php';
-//This file displays the results from the database that match the users name you typed
-
+// Try and connect to the database
 $con = mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
-if (!$con) {
-    die('Could not connect: ' . mysqli_error($con));
+
+// If connection was not successful, handle the error
+if($con === false) {
+    // Handle error - notify administrator, log to a file, show an error screen, etc.
 }
-$username = $_POST['username'];
+$username = $_GET['name'];
 $sql = "SELECT * FROM IG_Users WHERE username = '$username' ORDER BY `time_stamp` DESC";
 $results = mysqli_query($con,$sql);
 

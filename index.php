@@ -1,248 +1,197 @@
 <?php
-
 require_once('startup.php');
 require_once('database.php');
 get_header();
-
-
+//https://gist.github.com/cosmocatalano/4544576
+//Big thanks to @cosmocatalano for the Gist
 ?>
 <div class="container-fluid">
-	<div class="row">
-		<div class="col-md-6">
-			<h4><p class="text-info">Search for a user:</p></h4>
-			<div class="input-group"> <span class="input-group-btn">
-                  <button type="button" value="submit" class="btn btn-primary" onclick="ajax()" id="get_id" name="submit">Submit</button>
-                </span>
-				<input type="text" id="username" name="username" value="fitness" class="form-control"> </div>
-			<!-- Displays users data from Instagram API -->
-			<div id="result" class="row">
-				<div class="avatar col-md-6 col-md-push-3"></div>
-				<div class="users_name col-md-3"></div>
-				<div class="followers col-md-3"></div>
-				<div class="user_id col-md-3"></div>
-			</div>
-		</div>
-		<div class="col-md-6 resultsCol">
-			<!-- Displays the # of comments/likes on the 9 recent images from Instagram API -->
-			<table id="myTable" class="table table-striped table-hover">
-				<thead>
-					<tr>
-						<th>Comments</th>
-						<th>Likes</th>
-					</tr>
-				</thead>
-			</table>
-			<!-- Adds up and averages the comments/likes and adds an Engagement Ratio -->
-			<table id="sum_table" class="table table-bordered">
-				<tr class="totalColumn success">
-					<td class="totalComment"></td>
-					<td class="totalLikes"></td>
-					<td class="engagementRatio"></td>
-				</tr>
-			</table>
-			<button type="button" id="sendToDb" class="btn btn-primary" onclick="updateDatabase()">Update Database</button>
-		</div>
-	</div>
+   <div class="row">
+      <div class="col-md-6">
+         <!-- Include the Results Table-->
+         <?php
+            //returns a big old hunk of JSON from a non-private IG account page.
+            function scrape_insta($username) {
+            	$insta_source = file_get_contents('http://instagram.com/'.$username);
+            	$shards = explode('window._sharedData = ', $insta_source);
+            	$insta_json = explode(';</script>', $shards[1]);
+            	$insta_array = json_decode($insta_json[0], TRUE);
+            	return $insta_array;
+            }
+            //Retreives the username from the input box (also works hardcoded too)
+            $my_account = $_GET['name'];
+            //Do the deed
+            $results_array = scrape_insta($my_account);
+            //Programatically generate an html table
+            echo('<div class="resultsCol">
+                        <table class="table table-striped table-hover">
+                          <tr>
+                            <th>Comments</th>
+                            <th>Likes</th>
+                          </tr>');
+            $i = 0;
+              //that first parameter in the foreach loop could probably be set as a variable, looks ugly as is
+             foreach( $results_array['entry_data']['ProfilePage'][0]['user']['media']['nodes'] as $item ){
+                //basically if the counter reaches 9, shut the loop off.
+                //This particular app can go all the way to 12 before you need pagination
+                if($i == 9) break;
+                $i++;
+                echo '<td class="commentNum"><span class="number">'.$item['comments']['count'] .'</span></td>';
+                echo '<td class="likeNum"><span class="number">'.$item['likes']['count'] .'</span></td>';
+                //Sets 2 colums for the table
+                if($i % 1==0)
+                {
+                   echo '</tr><tr>';
+                }
+             }
+            echo'</tr></table></div>';
+            ?>
+         <!--Include the Green Totals Table-->
+         <table id="sum_table" class="table table-bordered">
+            <tr class="totalColumn success">
+               <td class="totalComment"></td>
+               <td class="totalLikes"></td>
+               <td class="engagementRatio"></td>
+            </tr>
+         </table>
+      </div>
+      <div class="col-md-6">
+         <!--User Search Bar and Update DB Button-->
+         <h4>
+            <p class="text-info">Search for a user:</p>
+         </h4>
+         <div class="input-group">
+            <span class="input-group-btn">
+            <button type="button" value="submit" class="btn btn-primary" onclick="ajax()" id="get_id" name="submit">Submit</button>
+            </span>
+            <input type="text" id="username" name="username" value="" class="form-control">
+            <button type="button" id="sendToDb" class="btn btn-primary" onclick="updateDatabase()">Update Database</button>
+         </div>
+         <!--Username,Num Followers, User ID & Profile Pic-->
+         <?php
+            //https://gist.github.com/cosmocatalano/4544576
+            $scrapedUsername = $results_array['entry_data']['ProfilePage'][0]['user']['username'];
+            $scrapedFollowersCount = $results_array['entry_data']['ProfilePage'][0]['user']['followed_by']['count'];
+            $scrapedUserId = $results_array['entry_data']['ProfilePage'][0]['user']['id'];
+            $scrapedProfilePic = $results_array['entry_data']['ProfilePage'][0]['user']['profile_pic_url'];
+            echo "<div class='avatarData'>";
+            //Grab the username
+            print_r("Username: <span class='usersName'>" . $scrapedUsername . "</span><br>");
+            //grab the # of followers
+            print_r("# of Followers: <span class='number numOfFollowers'>" . $scrapedFollowersCount . "</span><br>");
+            //grab the user ID
+            print_r("User ID: <span class='userId'><b>" . $scrapedUserId . "</b></span><br>");
+            //grab and display the profile picture
+            print_r("<a href='https://instagram.com/" . $scrapedUsername . "' target='_blank'><img id='profilePic' src='" . $scrapedProfilePic . "'/></a>" . "<br>");
+            echo "</div>";
+            ?>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-md-12">
+         <?php require 'includes/historydisplay.php'; ?>
+      </div>
+   </div>
 </div>
-<!-- Modal Start here-->
-<div class="modal fade bs-example-modal-sm" id="myPleaseWait" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
-	<div class="modal-dialog modal-sm">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title">
-										<span class="glyphicon glyphicon-time">
-										</span>Please Wait
-								 </h4> </div>
-			<div class="modal-body">
-				<div class="progress">
-					<div class="progress-bar progress-bar-info
-										progress-bar-striped active" style="width: 100%"> </div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- Modal ends Here -->
-<!-- Begin DB query table -->
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-12">
-			<?php include 'includes/historydisplay.php'; ?> </div>
-	</div>
-</div>
-<!-- End DB query Table -->
 <script type="text/javascript">
-	//Hide the Results table and results thumbnail on load
 	$(document).ready(function () {
-		//Table to the right that includes recently queried total/avg comments and likes plus engagement ratio
-		$(".resultsCol").addClass("hidden");
-		//Box that includes User ID, # Followers, Avatar and Username
-		$("#result").addClass("hidden");
-		//Table from previous stored database results
-		$("#dbTable").addClass("hidden");
+		//Hide these divs on page load
+		$(".resultsCol").hide();
+		$(".avatarData").hide();
+		$("#dbTable").hide();
+		$("#sum_table").hide();
+		//disable submit button on load
+		$("#get_id").prop("disabled", true);
+		$("#username").keyup(function () {
+			//If the username textbox has at least 1 character, enable it
+			if ($("#username").val().length >= 1) {
+				$("#get_id").prop("disabled", false);
+			}
+		});
+		//Enable form submission when the Return key is pressed
+		$('#username').keypress(function (e) {
+			var key = e.which;
+			//13 is the enter key code
+			if (key == 13) {
+				$('button[id="get_id"]').click();
+				return false;
+			}
+		});
 	});
-
+	//The submit button 
 	function ajax() {
-			//Displays a loading screen modal for 1000 ms
-			//Displays an alert if the Engagement Ratio isn't calculated in time
-			$('#myPleaseWait').modal('show');
-			$.ajax({
-					url: "index.php",
-					success: setTimeout(function (data) {
-						$('#myPleaseWait').modal('hide');
-					}, 1000),
-					error: setTimeout(function (data) {
-						if ($(".engagementRatio").text().split(": ").pop() === "NaN") {
-							$('#myPleaseWait').modal('hide');
-							alert("Engagement Ratio Not Loaded Please Reload Page");
-						}
-					}, 1000)
-				})
-				// First Ajax, Gets the profile pic, the user id #, and the username
-			var username = document.getElementById("username").value;
-			var usernameToken = "access_token=<?php echo IG_ACCESS_TOKEN; ?>";
-			$.ajax({
-				type: "GET",
-				dataType: "jsonp",
-				username: username,
-				cache: false,
-				url: "https://api.instagram.com/v1/users/search?q=" + username + "&" + usernameToken,
-				success: function (data) {
-					for (var i = 0; i < data.data.length; i++) {
-						if (this.username == data.data[i].username) {
-							// Display the User's ID
-							$("#result .user_id").append("User ID: " + data.data[i].id + "<br />");
-							// Display your profile pic so you know with certainty that this is the profile you searched for
-							var avatar = "<a href='https://www.instagram.com/" + data.data[i].username + "' target='_blank'><img src='" + data.data[i].profile_picture + "' alt='username " + data.data[i].username + "' ></a>";
-							$("#result .avatar").append(avatar);
-							// Display the username
-							var username = "Username: " + "<a href='https://www.instagram.com/" + data.data[i].username + "' target='_blank'>" + data.data[i].username + "</a><br />";
-							$("#result .users_name").append(username);
-							// Second request
-							// Adds the Likes + Comments data to the rows
-							$.ajax({
-								type: "GET",
-								dataType: "jsonp",
-								url: "https://api.instagram.com/v1/users/" + data.data[i].id + "/media/recent/?" + usernameToken,
-								success: function (data) {
-									var tr;
-									for (var i = 0; i < 9; i++) {
-										tr = $('<tr/>');
-										tr.append('<td class="comment_count">' + '<span class="number">' + data.data[i].comments.count + '</span>' + '</td>');
-										tr.append('<td class="likes_count">' + '<span class="number">' + data.data[i].likes.count + '</span>' + '</td>');
-										$('#myTable').append(tr);
-									}
-								}
-							});
-							// Third request
-							// Adds the followers count
-							$.ajax({
-								type: "GET",
-								dataType: "jsonp",
-								url: "https://api.instagram.com/v1/users/" + data.data[i].id + "/?" + usernameToken,
-								success: function (data) {
-									// Add the # of followers
-									var followers = "# of Followers: <span class='number'>" + data.data.counts.followed_by + "</span><br />";
-									$("#result .followers").append(followers);
-								}
-							});
-              //4th AJAX()-- displays user history table Below
-              var un = $("#username").val();
-              //The following $.ajax() works on MAMP but not on a server. No idea why
-              //Refer to MAMP_to_Production.php for a work around
-              //https://webdesignerhut.com/pass-data-with-ajax-to-a-php-file/
-							$.ajax({
-								type: "POST",
-								url: "includes/historydisplay.php",
-								data: {
-									username: un
-								},
-								dataType: 'html',
-								cache: false,
-								success: function (response) {
-									console.log("THE USERNAME I HAVE IS:::::: " + un);
-									$("#dbTable").html(response);
-								}
-							});
-						}
-					}
-				}
-			});
-			// This is where I add up all the numbers in the Comments and Likes columns
-			// setTimeout for a delay in processing. Helps Ajax not mess up. Very hacky fix, not for production
-			setTimeout(function () {
-				var sumComments = 0;
-				// Get comment count numbers
-				$(".comment_count").each(function () {
-					var value = $(this).text();
-					// Add only if the value is number
-					if (!isNaN(value) && value.length != 0) {
-						sumComments += parseFloat(value);
-					}
-				});
-				var totLikes = 0;
-				// Get likes count numbers
-				$(".likes_count").each(function () {
-					var value_likes = $(this).text();
-					if (!isNaN(value_likes) && value_likes.length != 0) {
-						totLikes += parseFloat(value_likes);
-					}
-				});
-				//Add <span class='number'> to results for number formatting
-				$('.totalComment').html("Total Comments: <b><span class='number total_comments'>" + sumComments + "</span></b>" + "<p>Average Comments: <b><span class='number avg_comments'>" + parseInt(sumComments / 9) + "</span></b></p>");
-				//Below takes the total number of likes and displays that number, then on the next line it divides the number by 9 and displays the average likes
-				$('.totalLikes').html("Total Likes: <b><span class='number total_likes'>" + totLikes + "</span></b>" + "<p>Average Likes: <b><span class='number avg_likes'>" + parseInt(totLikes / 9) + "</span></b></p>");
-				// Add in the math for the engagement Ratio
-				// [Likes + Comments] / Followers = Engagement Ratio
-				// I only sample the first 9 images on their account. No sense in getting numbers for pics that are 6 months old
-				var likesAndComments = totLikes + sumComments;
-				var numOfFollowers = $(".followers").text().split(": ").pop();
-				var engagementRatio = likesAndComments / numOfFollowers * 100;
-				$(".engagementRatio").html("Engagement Ratio: " + "<b>" + engagementRatio.toFixed(2) + "</b>");
-				//Activate the jQuery Number plugin to add commas on thousands
-				$('span.number').number(true);
-				//Display the table with results
-				$(".resultsCol").toggleClass("hidden");
-				//Display the results thumbnail
-				$("#result").toggleClass("hidden");
-				//Display the table with the stored queries
-				$("#dbTable").toggleClass("hidden");
-				//disable the submit button to prevent double feeding of results
-				$('#get_id').prop('disabled', true);
-			}, 1000);
+		var username = document.getElementById("username").value;
+		window.location.href = "index.php?name=" + username;
+	};
+	//Get comment count numbers
+	var sumComments = 0;
+	$(".commentNum").each(function () {
+		var value = $(this).text();
+		//Add only if the value is number
+		if (!isNaN(value) && value.length != 0) {
+			sumComments += parseFloat(value);
 		}
-		//UPDATE DATABASE FUNCTION --- NOT WORKING
-		//http://stackoverflow.com/questions/24315471/how-to-save-data-using-ajax-and-pdo
+	});
+	//Get likes count numbers
+	var totLikes = 0;
+	$(".likeNum").each(function () {
+		var value_likes = $(this).text();
+		if (!isNaN(value_likes) && value_likes.length != 0) {
+			totLikes += parseFloat(value_likes);
+		}
+	});
+	//Add <span class='number'> to results for number formatting
+	$('.totalComment').html("Total Comments: <b><span class='number total_comments'>" + sumComments + "</span></b>" + "<p>Average Comments: <b><span class='number avg_comments'>" + parseInt(sumComments / 9) + "</span></b></p>");
+	//Below takes the total number of likes and displays that number, then on the next line it divides the number by 9 and displays the average likes
+	$('.totalLikes').html("Total Likes: <b><span class='number total_likes'>" + totLikes + "</span></b>" + "<p>Average Likes: <b><span class='number avg_likes'>" + parseInt(totLikes / 9) + "</span></b></p>");
+	//Add in the math for the engagement Ratio
+	//[Likes + Comments] / Followers = Engagement Ratio
+	//I only sample the first 9 images on their account. No sense in getting numbers for pics that are 6 months old
+	var likesAndComments = totLikes + sumComments;
+	var numOfFollowers = $(".numOfFollowers").text();
+	var engagementRatio = likesAndComments / numOfFollowers * 100;
+	$(".engagementRatio").html("Engagement Ratio: " + "<b>" + engagementRatio.toFixed(2) + "</b>");
+	//Activate the jQuery Number plugin to add commas on thousands
+	$('.number').number(true);
+	//Update the database with the returned results
 	function updateDatabase() {
 		event.preventDefault();
 		//Define data var
-		var data = {};
-		//Finds the DOM element, splits, pops and replaces any commas, kinda ghetto but YOLO
-		data.num_followers = $(".followers").text().split(": ").pop().replace(/,/g, "");
-		data.user_id = $(".user_id").text().split(": ").pop();
-		data.users_name = $(".users_name").text().split(": ").pop();
-		data.total_comments = $(".total_comments").text().replace(/,/g, "");
-		data.avg_comments = $(".avg_comments").text().replace(/,/g, "");
-		data.total_likes = $(".total_likes").text().replace(/,/g, "");
-		data.avg_likes = $(".avg_likes").text().replace(/,/g, "");
-		data.engagement_ratio = $(".engagementRatio").text().split(": ").pop();
-		data.picture = $(".avatar a").html();
-		//AJAX query to update the Database
+		var db = {};
+		//Finds the DOM element, splits, pops and replaces any commas
+		db.numFollowers = $(".numOfFollowers").text().replace(/,/g, "");
+		db.userId = $(".userId").text();
+		db.users_name = $(".usersName").text();
+		db.totalComments = $(".total_comments").text().replace(/,/g, "");
+		db.averageComments = $(".avg_comments").text().replace(/,/g, "");
+		db.totalLikes = $(".total_likes").text().replace(/,/g, "");
+		db.averageLikes = $(".avg_likes").text().replace(/,/g, "");
+		db.engagementRatio = $(".engagementRatio b").text();
+		db.profilePic = $("#profilePic").attr("src");
+		//Send the data to the DB with AJAX
 		$.ajax({
 			type: "POST",
-			url: "includes/update.php",
-			data: data,
 			cache: false,
+			data: db,
+			url: "includes/update.php",
 			success: function (response) {
-				console.log("# of Followers: " + data.num_followers);
-				console.log("User ID: " + data.user_id);
-				console.log("User Name: " + data.users_name);
-				console.log("Total Comments: " + data.total_comments);
-				console.log("Average Comments: " + data.avg_comments);
-				console.log("Total Likes: " + data.total_likes);
-				console.log("Average Likes: " + data.avg_likes);
-				console.log("Engagement Ratio: " + data.engagement_ratio);
-				console.log("Picture: " + data.picture);
+				//Auto refresh the div with new data
+				$(".col-md-12").load(location.href + " .col-md-12");
+				//Disable button on click
+				$('#sendToDb').prop('disabled', true);
+				setTimeout(function () {
+					//Activate the jQuery Number AGAIN after refresh
+					$('.number').number(true);
+				}, 1500);
+				console.log("# of Followers: " + db.numFollowers);
+				console.log("User ID: " + db.userId);
+				console.log("User Name: " + db.users_name);
+				console.log("Total Comments: " + db.totalComments);
+				console.log("Average Comments: " + db.averageComments);
+				console.log("Total Likes: " + db.totalLikes);
+				console.log("Average Likes: " + db.averageLikes);
+				console.log("Engagement Ratio: " + db.engagementRatio);
+				console.log("Picture: " + db.profilePic);
 			},
 			error: function (xhr, ajaxOptions, thrownError) {
 				console.log(xhr.status);
@@ -250,9 +199,21 @@ get_header();
 				console.log(thrownError);
 			}
 		});
-		//Disable button on click
-		$('#sendToDb').prop('disabled', true);
 	};
+	//Fires last- waits for the page to load after the ajax() function triggers
+	$(document).ready(function () {
+		var pattern = /name(.*)/gm;
+		var url = window.location.href.split("?")[1];
+		var result = pattern.test(url);
+		if (result == true) {
+			console.log("Url Matched: " + url + " " + result);
+			$(".resultsCol").show();
+			$(".avatarData").show();
+			$("#dbTable").show();
+			$("#sum_table").show();
+		} else {
+			console.log("NO MATCHING URL");
+		}
+	});
 </script>
-
 <?php get_footer(); ?>

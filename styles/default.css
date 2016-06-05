@@ -102,14 +102,14 @@ a:hover, a:focus {
 }
 .btn {
   border: 1px solid;
-  color: #1f77b4;
+  color: white;
   text-decoration: none;
   font-family: 'Open Sans', Helvetica, sans-serif;
   display: inline-block;
   vertical-align: middle;
   border-radius: 3px;
   padding: 8px 23px;
-  background-color: transparent;
+  background-color: #1f77b4;
   -webkit-transition: all .3s ease;
   transition: all .3s ease;
   -webkit-user-select: none;
@@ -117,51 +117,9 @@ a:hover, a:focus {
   -ms-user-select: none;
   user-select: none
 }
-svg.main-svg:first-of-type, .subplot, .js-plotly-plot .plotly .modebar {
-  background: #FFF !important
-}
-.subplot rect {
-  fill: #FFF !important
-}
-.gtitle {
-  fill: #1f77b4 !important
-}
-.js-line {
-  stroke: #1f77b4 !important
-}
-.xtick text, .ytick text {
-  fill: #1f77b4 !important
-}
-.js-plotly-plot .plotly .modebar-btn path, .js-plotly-plot .plotly .modebar-btn.modebar-btn--logo path {
-  fill: #1f77b4 !important
-}
+
 .input-group{
   padding-bottom: 15px;
-}
-.avatar{
-    display: block;
-    padding: 4px;
-    margin-bottom: 20px;
-    line-height: 1.42857143;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    -webkit-transition: border .2s ease-in-out;
-    -o-transition: border .2s ease-in-out;
-    transition: border .2s ease-in-out;
-    position: relative;
-}
-.avatar:hover{
-  opacity: .7;
-}
-.users_name, .followers, .user_id{
-  position: relative;
-  z-index: 1;
-  width: 50%;
-  right: 20px;
-}
-#result{
-  font-size: 1.3em;
-  line-height: 2.6em;
 }
 input#username{
   height: 38px;
@@ -187,4 +145,37 @@ input#username{
 }
 .resultsCol{
   padding-bottom: 15px;
+}
+.avatarData{
+  font-size: x-large;
+  margin-left: 25%;
+  padding-top: 5%;
+}
+img#profilePic {
+    width: 40%;
+    border-radius: 10px;
+    border: 4px #1F77B4 solid;
+    margin-top: 15px;
+    -webkit-transition: border .2s ease-in-out;
+    -o-transition: border .2s ease-in-out;
+    transition: border .2s ease-in-out;
+}
+img#profilePic:hover{
+  opacity: 0.7;
+}
+span.number.numOfFollowers {
+    font-weight: 600;
+}
+span.usersName {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.btn[disabled]{
+  opacity: 0.5;
+}
+.table{
+  font-size: 20px;
+}
+#sendToDb{
+  background-color: goldenrod;
 }
