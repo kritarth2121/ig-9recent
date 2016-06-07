@@ -65,7 +65,15 @@ Note for Beginners:
 - [x] Should be a cleaner way to remove the results on the page without reloading
 - [x] Update Database button should automatically populate the DB records table below
 - [ ] Truncate queried records and paginate
-- [ ] Issue alert if the scraper runs into a private account 
+- [ ] Issue alert if the scraper runs into a private account
+- [ ] Display thumbnail of pics scraped
+- [ ] Enable user to specify how many pics to scrape (currently limited to 12- pagination issue)
+- [ ] Compare records on table (eg- plus-minus followers growth between records)
+- [ ] Create an auto-crawling function on specified accounts
+- [ ] Incorporate HighCharts into results
+- [ ] Post frequency (eg- time between first and last post divided by 9)
+- [ ] Number of hashtags per post
+- [ ] Create a tracked accounts overview page (would probably require a login function)       
 
 ## Built With
 * [Atom](https://atom.io/)
