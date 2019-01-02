@@ -2,9 +2,7 @@
 
 ![IG 9recent Screenshot](http://i.imgur.com/JJO4y29.png?1 "IG 9recent Screenshot")
 
-## Live Demo
-[Click Here See it in Action](http://162.243.248.106/index.php)
-
+## Reminder to rebuild this app. Ditch the jQuery
 ## About
 
 IG 9recent is a simple Instagram analytics tool for evaluating activity on specified accounts. This tool is useful for Internet marketers who are searching for influencer accounts with high engagement and activity. Previously this app interfaced with the Instagram API to pull the data, however in early June 2016 Instagram decided to require all API requests be authenticated per user, even the data they share publically. Therefore IG 9recent scrapes data without the need of an API. IG 9recent scans the most recent 9 photos of an Instagram account and spits out data for several fields:
