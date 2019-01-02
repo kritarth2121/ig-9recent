@@ -10,9 +10,15 @@ get_header();
       <div class="col-md-6">
          <!-- Include the Results Table-->
          <?php
+	 $arrContextOptions=array(
+	    "ssl"=>array(
+		"verify_peer"=>false,
+		"verify_peer_name"=>false,
+	    ),
+	); 
             //returns a big old hunk of JSON from a non-private IG account page.
             function scrape_insta($username) {
-            	$insta_source = file_get_contents('http://instagram.com/'.$username);
+            	$insta_source = file_get_contents('https://instagram.com/'.$username, false, stream_context_create($arrContextOptions));
             	$shards = explode('window._sharedData = ', $insta_source);
             	$insta_json = explode(';</script>', $shards[1]);
             	$insta_array = json_decode($insta_json[0], TRUE);
@@ -31,13 +37,13 @@ get_header();
                           </tr>');
             $i = 0;
               //that first parameter in the foreach loop could probably be set as a variable, looks ugly as is
-             foreach( $results_array['entry_data']['ProfilePage'][0]['user']['media']['nodes'] as $item ){
+             foreach( $results_array['entry_data']['ProfilePage'][0]['graphql']['user']['edge_owner_to_timeline_media']['edges'] as $item ){
                 //basically if the counter reaches 9, shut the loop off.
                 //This particular app can go all the way to 12 before you need pagination
                 if($i == 9) break;
                 $i++;
-                echo '<td class="commentNum"><span class="number">'.$item['comments']['count'] .'</span></td>';
-                echo '<td class="likeNum"><span class="number">'.$item['likes']['count'] .'</span></td>';
+                echo '<td class="commentNum"><span class="number">'.$item['node']['edge_media_to_comment']['count'] .'</span></td>';
+                echo '<td class="likeNum"><span class="number">'.$item['node']['edge_liked_by']['count'] .'</span></td>';
                 //Sets 2 colums for the table
                 if($i % 1==0)
                 {
@@ -70,10 +76,10 @@ get_header();
          <!--Username,Num Followers, User ID & Profile Pic-->
          <?php
             //https://gist.github.com/cosmocatalano/4544576
-            $scrapedUsername = $results_array['entry_data']['ProfilePage'][0]['user']['username'];
-            $scrapedFollowersCount = $results_array['entry_data']['ProfilePage'][0]['user']['followed_by']['count'];
-            $scrapedUserId = $results_array['entry_data']['ProfilePage'][0]['user']['id'];
-            $scrapedProfilePic = $results_array['entry_data']['ProfilePage'][0]['user']['profile_pic_url'];
+            $scrapedUsername = $results_array['entry_data']['ProfilePage'][0]['graphql']['user']['username'];
+            $scrapedFollowersCount = $results_array['entry_data']['ProfilePage'][0]['graphql']['user']['edge_followed_by']['count'];
+            $scrapedUserId = $results_array['entry_data']['ProfilePage'][0]['graphql']['user']['id'];
+            $scrapedProfilePic = $results_array['entry_data']['ProfilePage'][0]['graphql']['user']['profile_pic_url_hd'];
             echo "<div class='avatarData'>";
             //Grab the username
             print_r("Username: <span class='usersName'>" . $scrapedUsername . "</span><br>");
