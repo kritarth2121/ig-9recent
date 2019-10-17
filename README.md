@@ -1,5 +1,8 @@
 # IG 9recent [![License](https://img.shields.io/badge/license-GPL--2.0%2B-green.svg)](http://www.gnu.org/licenses/gpl-2.0.html)
 
+## Note: This repo is no longer maintained. Instagram keeps changing their data structure which breaks the crawler. Many years ago you could use their API but that was revoked.
+
+
 ![IG 9recent Screenshot](http://i.imgur.com/JJO4y29.png?1 "IG 9recent Screenshot")
 
 ## Reminder to rebuild this app. Ditch the jQuery
